@@ -1,13 +1,13 @@
-import React from "react";
+import React from 'react'
 
 class Action extends React.Component {
   constructor(props) {
-    super(props);
-    this.onMakeDecision = this.onMakeDecision.bind(this);
+    super(props)
+    this.onMakeDecision = this.onMakeDecision.bind(this)
   }
 
   onMakeDecision() {
-    const randomNumber = Math.floor(Math.random() * this.props.options.length);
+    const randomNumber = Math.floor(Math.random() * this.props.options.length)
     alert(this.props.options[randomNumber])
   }
 
@@ -19,7 +19,7 @@ class Action extends React.Component {
       >
         What should I do
       </button>
-    );
+    )
   }
 }
-export {Action}
+export { Action }
