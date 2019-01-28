@@ -2,11 +2,11 @@ import React from 'react'
 
 class AddOption extends React.Component {
   state = { error: '' }
-  onFormSubmit = (event) => {
+  onFormSubmit = event => {
     event.preventDefault()
     const option = event.target.elements.option.value
     event.target.elements.option.value = ''
-    const error = this.props.addOption(option)
+    const error = this.props.handleAddOption(option)
     this.setState({ error })
     if (!error) {
       event.target.elements.option.value = ''

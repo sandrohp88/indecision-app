@@ -8,12 +8,28 @@ import { Action } from './Action'
 import { Options } from './Options'
 import { AddOption } from './AddOption'
 class App extends Component {
-  constructor(props) {
-    super(props)
-    this.state = { options: [] }
-    this.removeAllHandler = this.removeAllHandler.bind(this)
-    this.addOption = this.addOption.bind(this)
-    this.removeOption = this.removeOption.bind(this)
+  state = { options: [] }
+  handleAddOption = option => {
+    if (!option) {
+      console.log('enter valid option')
+      return 'Enter a valid option'
+    } else if (this.state.options.includes(option)) {
+      return `${option} already exits`
+    }
+    this.setState(prevState => {
+      return { options: prevState.options.concat(option) }
+    })
+  }
+  handleRemoveAll = () => {
+    this.setState({ options: [] })
+  }
+  handleRemoveOption = option => {
+    const found = this.state.options.includes(option)
+    if (found) {
+      this.setState(prevState => {
+        return { options: prevState.options.filter(opt => opt !== option) }
+      })
+    }
   }
   componentDidMount() {
     const json = localStorage.getItem('options')
@@ -33,28 +49,6 @@ class App extends Component {
       localStorage.setItem('options', json)
     }
   }
-  addOption(option) {
-    if (!option) {
-      console.log('enter valid option')
-      return 'Enter a valid option'
-    } else if (this.state.options.includes(option)) {
-      return `${option} already exits`
-    }
-    this.setState(prevState => {
-      return { options: prevState.options.concat(option) }
-    })
-  }
-  removeAllHandler() {
-    this.setState({ options: [] })
-  }
-  removeOption(option) {
-    const found = this.state.options.includes(option)
-    if (found) {
-      this.setState(prevState => {
-        return { options: prevState.options.filter(opt => opt !== option) }
-      })
-    }
-  }
 
   render() {
     return (
@@ -63,10 +57,10 @@ class App extends Component {
         <Action options={this.state.options} />
         <Options
           options={this.state.options}
-          removeAllOptions={this.removeAllHandler}
-          removeOption={this.removeOption}
+          removeAllOptions={this.handleRemoveAll}
+          removeOption={this.handleRemoveOption}
         />
-        <AddOption addOption={this.addOption} />
+        <AddOption handleAddOption={this.handleAddOption} />
       </div>
     )
   }
