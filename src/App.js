@@ -7,8 +7,9 @@ import { Header } from './Header'
 import { Action } from './Action'
 import { Options } from './Options'
 import { AddOption } from './AddOption'
+import { OptionModal } from './OptionModal'
 class App extends Component {
-  state = { options: [] }
+  state = { options: [], selectedOption: undefined }
   handleAddOption = option => {
     if (!option) {
       console.log('enter valid option')
@@ -30,6 +31,15 @@ class App extends Component {
         return { options: prevState.options.filter(opt => opt !== option) }
       })
     }
+  }
+
+  handleMakeDecision = () => {
+    const randomNumber = Math.floor(Math.random() * this.state.options.length)
+    this.setState(() => ({ selectedOption: this.state.options[randomNumber] }))
+  }
+
+  handleClearSelectedOption = () => {
+    this.setState(() => ({ selectedOption: undefined }))
   }
   componentDidMount() {
     const json = localStorage.getItem('options')
@@ -54,13 +64,20 @@ class App extends Component {
     return (
       <div>
         <Header numberOfOptions={this.state.options.length} />
-        <Action options={this.state.options} />
+        <Action
+          show={this.state.options.length === 0}
+          onMakeDecision={this.handleMakeDecision}
+        />
         <Options
           options={this.state.options}
           removeAllOptions={this.handleRemoveAll}
           removeOption={this.handleRemoveOption}
         />
         <AddOption handleAddOption={this.handleAddOption} />
+        <OptionModal
+          selectedOption={this.state.selectedOption}
+          handleClearSelectedOption={this.handleClearSelectedOption}
+        />
       </div>
     )
   }
