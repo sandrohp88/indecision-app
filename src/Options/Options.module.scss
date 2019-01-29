@@ -1,0 +1,28 @@
+@import '../sharedStyles/_colors';
+@import '../sharedStyles/_sizes';
+.widget {
+  background: $light-blue;
+  margin-bottom: $m-size;
+}
+
+.widget__message {
+  border-bottom: 1px solid lighten($light-blue, 10%);
+  color: $off-white;
+  margin: 0;
+  padding: $l-size;
+  text-align: center;
+}
+
+// Widget Header
+.widget_header {
+  background: $blue;
+  color: $off-white;
+  display: flex;
+  justify-content: space-between;
+  padding: $m-size;
+}
+
+.widget_header__title {
+  margin: 0;
+  color: $off-white;
+}

@@ -1,0 +1,44 @@
+@import '../sharedStyles/_colors';
+@import '../sharedStyles/_sizes';
+
+// Add Option Error
+.add_option_error {
+  color: $off-white;
+  font-style: italic;
+  margin: $m-size 0 0 0;
+  padding: 0 $m-size;
+}
+
+// Add Option
+.add_option {
+  display: flex;
+  flex-direction: column;
+  padding: $m-size;
+}
+
+.add_option__input {
+  background: $off-black;
+  border: none;
+  color: $off-white;
+  border-bottom: .3rem solid darken($dark-blue, 10%);
+  flex-grow: 1;
+  margin: 0 0 $s-size 0;
+  padding: $s-size;
+}
+// Button
+.button {
+  background: $purple;
+  border: none;
+  border-bottom: .3rem solid darken($purple, 10%);
+  color: white;
+  font-weight: 500;
+  padding: $s-size;
+}
+@media (min-width: $desktop-breakpoint) {
+  .add_option {
+    flex-direction: row;
+  }
+  .add_option__input {
+    margin: 0 $s-size 0 0;
+  }
+}

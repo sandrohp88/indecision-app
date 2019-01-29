@@ -1,5 +1,10 @@
 import React from 'react'
-
+import {
+  add_option_error,
+  add_option,
+  add_option__input, 
+  button
+} from './AddOption.module.scss'
 class AddOption extends React.Component {
   state = { error: '' }
   onFormSubmit = event => {
@@ -15,11 +20,11 @@ class AddOption extends React.Component {
 
   render() {
     return (
-      <div>
-        {this.state.error && <p>{this.state.error}</p>}
-        <form onSubmit={this.onFormSubmit}>
-          <input type="text" name="option" id="option" />
-          <button type="submit">Add option</button>
+      <div >
+        {this.state.error && <p className={add_option_error}>{this.state.error}</p>}
+        <form className={add_option} onSubmit={this.onFormSubmit}>
+          <input className={add_option__input} type="text" name="option" id="option" />
+          <button class={button} type="submit">Add option</button>
         </form>
       </div>
     )

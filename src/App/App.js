@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
 
-// import logo from "./logo.svg";
-import './App.css'
+import './App.module.scss'
 
-import { Header } from './Header'
-import { Action } from './Action'
-import { Options } from './Options'
-import { AddOption } from './AddOption'
-import { OptionModal } from './OptionModal'
+import { Header } from '../Header/Header'
+import { Action } from '../Action/Action'
+import { Options } from '../Options/Options'
+import { AddOption } from '../AddOption/AddOption'
+import { OptionModal } from '../OptionModal/OptionModal'
 class App extends Component {
   state = { options: [], selectedOption: undefined }
   handleAddOption = option => {
